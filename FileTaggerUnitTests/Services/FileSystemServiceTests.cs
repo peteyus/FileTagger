@@ -1,5 +1,4 @@
 ﻿using FileTagger.Interfaces;
-using FileTagger.Services;
 using FileTaggerUnitTests.TestInfrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

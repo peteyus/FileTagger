@@ -2,9 +2,7 @@
 using FileTagger.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.IO.Abstractions;
-using System.IO.Abstractions.TestingHelpers;
 
 namespace FileTaggerUnitTests.TestInfrastructure
 {

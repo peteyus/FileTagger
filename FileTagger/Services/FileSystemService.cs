@@ -18,7 +18,9 @@ namespace FileTagger.Services
             this.fileSystem = fileSystem;
         }
 
-        public void SetFilePathRoot(string filePath)
+        public string WorkingDirectory { get; private set; }
+
+        public void SetWorkingDirectory(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
             {
@@ -30,7 +32,7 @@ namespace FileTagger.Services
                 throw new InvalidOperationException("That file path does not exist.");
             }
 
-            var directory = this.fileSystem.Directory.GetDirectoryRoot(filePath);
+            this.WorkingDirectory = this.fileSystem.Path.GetDirectoryName(filePath);
         }
     }
 }
