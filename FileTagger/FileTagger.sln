@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTagger", "FileTagger.csproj", "{96866F0A-6ABC-49ED-BE0D-73241A76F133}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileTagger", "FileTagger.csproj", "{96866F0A-6ABC-49ED-BE0D-73241A76F133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTaggerUnitTests", "..\FileTaggerUnitTests\FileTaggerUnitTests.csproj", "{8AC202C7-FC86-4E95-B831-32A6A88BB890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{96866F0A-6ABC-49ED-BE0D-73241A76F133}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96866F0A-6ABC-49ED-BE0D-73241A76F133}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96866F0A-6ABC-49ED-BE0D-73241A76F133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AC202C7-FC86-4E95-B831-32A6A88BB890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AC202C7-FC86-4E95-B831-32A6A88BB890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AC202C7-FC86-4E95-B831-32A6A88BB890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AC202C7-FC86-4E95-B831-32A6A88BB890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
