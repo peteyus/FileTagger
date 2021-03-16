@@ -17,6 +17,7 @@ namespace FileTagger.Services
 
             this.fileSystem = fileSystem;
         }
+
         public void SetFilePathRoot(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
