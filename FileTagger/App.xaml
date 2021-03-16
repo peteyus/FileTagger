@@ -1,9 +1,9 @@
 ﻿<Application x:Class="FileTagger.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:FileTagger"
+             xmlns:viewModels="clr-namespace:FileTagger.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <viewModels:ViewModelLocator x:Key="Locator" />
     </Application.Resources>
 </Application>
