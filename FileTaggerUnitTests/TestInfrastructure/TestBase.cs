@@ -11,6 +11,7 @@ namespace FileTaggerUnitTests.TestInfrastructure
     {
         // My services
         protected Mock<IFileSystemService> MockFileSystemService { get; private set; }
+        protected Mock<ISerializationService> MockSerializationService { get; private set; }
 
         // External services
         protected IFileSystem MockFileSystem { get; private set; }
@@ -26,10 +27,16 @@ namespace FileTaggerUnitTests.TestInfrastructure
             return new FileSystemService(this.MockFileSystem);
         }
 
+        protected IAppSettingsService CreateAppSettingsService()
+        {
+            return new AppSettingsService(this.MockSerializationService.Object);
+        }
 
         private void InitializeMocks()
         {
             this.MockFileSystemService = new Mock<IFileSystemService>();
+            this.MockSerializationService = new Mock<ISerializationService>();
+
             this.MockFileSystem = new MockFileSystem();
         }
     }

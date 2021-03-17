@@ -15,7 +15,7 @@ namespace FileTaggerUnitTests.Services
         {
             base.TestInitialize();
 
-            this.classUnderTest = new AppSettingsService();
+            this.classUnderTest = this.CreateAppSettingsService();
         }
     }
 }
