@@ -163,7 +163,7 @@ namespace FileTaggerUnitTests.Services
         }
 
         [TestClass]
-        public class GetSettingValueTests : AppSettingsServiceTests
+        public class GetSettingTests : AppSettingsServiceTests
         {
             [TestMethod]
             public void ThrowsExceptionWhenNameIsNull()
@@ -172,7 +172,7 @@ namespace FileTaggerUnitTests.Services
                 try
                 {
                     // act
-                    this.classUnderTest.GetSettingValue(null);
+                    this.classUnderTest.GetSetting(null);
                     Assert.Fail("Should have thrown an exception.");
                 }
                 catch (ArgumentNullException e)
@@ -189,7 +189,7 @@ namespace FileTaggerUnitTests.Services
                 this.SetupTestToReturnApplicationSetting("Bob", "boop");
 
                 // act
-                this.classUnderTest.GetSettingValue("Bob");
+                this.classUnderTest.GetSetting("Bob");
 
                 // assert
                 this.MockFileSystem.MockFile.Verify(file => file.Exists(It.IsAny<string>()),
@@ -205,10 +205,10 @@ namespace FileTaggerUnitTests.Services
                 var expectedSetting = this.SetupTestToReturnApplicationSetting(something, "Something else.");
 
                 // act
-                var result = this.classUnderTest.GetSettingValue(something.ToLower());
+                var result = this.classUnderTest.GetSetting(something.ToLower());
 
                 // assert
-                Assert.AreEqual(expectedSetting.SettingValue, result, "Should have matched even with the case not matching.");
+                Assert.AreEqual(expectedSetting, result, "Should have matched even with the case not matching.");
             }
         }
     }

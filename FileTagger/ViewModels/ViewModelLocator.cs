@@ -26,6 +26,8 @@ namespace FileTagger.ViewModels
         private void RegisterInternalServices()
         {
             this.Container.RegisterType<IFileSystemService, FileSystemService>(TypeLifetime.Singleton);
+            this.Container.RegisterType<IAppSettingsService, AppSettingsService>(TypeLifetime.Singleton);
+            this.Container.RegisterType<ISerializationService, SerializationService>(TypeLifetime.Singleton);
         }
     }
 }

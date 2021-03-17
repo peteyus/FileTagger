@@ -67,7 +67,7 @@ namespace FileTagger.Services
             }
         }
 
-        public object GetSettingValue(string setting)
+        public ApplicationSetting GetSetting(string setting)
         {
             setting.CheckWhetherArgumentIsNull(nameof(setting));
 
@@ -78,12 +78,7 @@ namespace FileTagger.Services
                 knownSetting = this.allSettings.FirstOrDefault(s => string.Equals(s.SettingName, setting, StringComparison.OrdinalIgnoreCase));
             }
 
-            if (knownSetting == null)
-            {
-                throw new InvalidOperationException($"Setting {setting} was not found.");
-            }
-
-            return knownSetting.SettingValue;
+            return knownSetting;
         }
     }
 }
