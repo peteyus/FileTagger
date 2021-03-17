@@ -8,6 +8,6 @@
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
-
+        <TextBlock Text="{Binding WorkingPath}" />
     </Grid>
 </Window>
