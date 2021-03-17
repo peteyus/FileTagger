@@ -21,6 +21,7 @@ namespace FileTagger.ViewModels
 
             this.appSettingsService = appSettingsService;
             this.Ribbon = ribbonMenuViewModel;
+
             var workingDirectory = this.appSettingsService.GetSetting(Constants.WorkingDirectory);
             this.workingPath = workingDirectory?.SettingValue.ToString() ?? AppDomain.CurrentDomain.BaseDirectory;
         }
