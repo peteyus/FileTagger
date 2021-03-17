@@ -14,7 +14,7 @@ namespace FileTaggerUnitTests.TestInfrastructure
         protected Mock<ISerializationService> MockSerializationService { get; private set; }
 
         // External services
-        protected IFileSystem MockFileSystem { get; private set; }
+        protected MockFileSystem MockFileSystem { get; private set; }
 
         [TestInitialize]
         public virtual void TestInitialize()
@@ -29,7 +29,7 @@ namespace FileTaggerUnitTests.TestInfrastructure
 
         protected IAppSettingsService CreateAppSettingsService()
         {
-            return new AppSettingsService(this.MockSerializationService.Object);
+            return new AppSettingsService(this.MockSerializationService.Object, this.MockFileSystem);
         }
 
         private void InitializeMocks()
