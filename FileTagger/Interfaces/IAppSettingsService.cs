@@ -9,6 +9,6 @@ namespace FileTagger.Interfaces
 
         bool SaveSettings();
 
-        object GetSettingValue(string setting);
+        ApplicationSetting GetSetting(string setting);
     }
 }
