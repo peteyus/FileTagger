@@ -7,6 +7,8 @@ namespace FileTagger.Interfaces
     {
         IEnumerable<ApplicationSetting> ReadSettings();
 
-        bool SaveSettings(IEnumerable<ApplicationSetting> settings);
+        bool SaveSettings();
+
+        object GetSettingValue(string setting);
     }
 }
