@@ -1,4 +1,5 @@
-﻿using FileTagger.Interfaces;
+﻿using FileTagger.Extensions;
+using FileTagger.Interfaces;
 using System;
 using System.IO.Abstractions;
 
@@ -10,10 +11,7 @@ namespace FileTagger.Services
 
         public FileSystemService(IFileSystem fileSystem)
         {
-            if (fileSystem == null)
-            {
-                throw new ArgumentNullException(nameof(fileSystem));
-            }
+            fileSystem.CheckWhetherArgumentIsNull(nameof(fileSystem));
 
             this.fileSystem = fileSystem;
         }
@@ -22,10 +20,7 @@ namespace FileTagger.Services
 
         public void SetWorkingDirectory(string filePath)
         {
-            if (string.IsNullOrWhiteSpace(filePath))
-            {
-                throw new ArgumentNullException(nameof(filePath));
-            }
+            filePath.CheckWhetherArgumentIsNull(nameof(filePath));
 
             if (!this.fileSystem.File.Exists(filePath))
             {

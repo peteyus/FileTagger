@@ -1,4 +1,5 @@
-﻿using FileTagger.Interfaces;
+﻿using FileTagger.Extensions;
+using FileTagger.Interfaces;
 using FileTagger.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,9 @@ namespace FileTagger.Services
         public AppSettingsService(ISerializationService serializationService, 
             IFileSystem fileSystem)
         {
-            // TODO: Nullcheck arguments.
+            serializationService.CheckWhetherArgumentIsNull(nameof(serializationService));
+            fileSystem.CheckWhetherArgumentIsNull(nameof(fileSystem));
+
             this.serializationService = serializationService;
             this.fileSystem = fileSystem;
 
@@ -66,10 +69,7 @@ namespace FileTagger.Services
 
         public object GetSettingValue(string setting)
         {
-            if (string.IsNullOrWhiteSpace(setting))
-            {
-                throw new ArgumentNullException(nameof(setting));
-            }
+            setting.CheckWhetherArgumentIsNull(nameof(setting));
 
             var knownSetting = this.allSettings.FirstOrDefault(s => string.Equals(s.SettingName, setting, StringComparison.OrdinalIgnoreCase));
             if (knownSetting == null)
