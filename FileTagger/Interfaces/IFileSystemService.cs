@@ -1,4 +1,7 @@
-﻿namespace FileTagger.Interfaces
+﻿using FileTagger.Models.Nodes;
+using System.Collections.Generic;
+
+namespace FileTagger.Interfaces
 {
     public interface IFileSystemService
     {
@@ -13,5 +16,7 @@
         /// <param name="filePath">The path of a file or directory to work from. 
         ///     If a filename is provided, sets the working directory to the directory containing the specified file.</param>
         void SetWorkingDirectory(string filePath);
+
+        NodeBase ReadWorkingDirectory();
     }
 }
