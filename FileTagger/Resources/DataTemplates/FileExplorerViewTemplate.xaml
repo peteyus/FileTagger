@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:dockedViewModels="clr-namespace:FileTagger.ViewModels.Docked"
+                    xmlns:dockedViews="clr-namespace:FileTagger.Views.Docked">
+    <DataTemplate DataType="{x:Type dockedViewModels:FileExplorerViewModel}">
+        <dockedViews:FileExplorerView />
+    </DataTemplate>
+</ResourceDictionary>
