@@ -25,7 +25,7 @@
                      Grid.ColumnSpan="2"
                      DataContext="{Binding Ribbon}" />
         
-        <!-- Dock, or "dock" -->
+        <!-- Dock -->
         <xcad:DockingManager AnchorablesSource="{Binding DockedViewModels}"
                              Grid.Row="1"
                              Grid.Column="0">
