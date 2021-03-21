@@ -1,10 +1,13 @@
 ﻿using FileTagger.Extensions;
 using FileTagger.Interfaces;
+using FileTagger.Interfaces.ViewModels;
 using FileTagger.Resources;
 using FileTagger.ViewModels.Docked;
 using FileTagger.ViewModels.Menu;
 using GalaSoft.MvvmLight;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace FileTagger.ViewModels
 {
@@ -33,20 +36,29 @@ namespace FileTagger.ViewModels
             this.fileSystemService.SetWorkingDirectory(this.workingPath);
 
             this.FileExplorer = new FileExplorerViewModel(this.fileSystemService.ReadWorkingDirectory());
+
+            this.SetupTabs();
         }
 
         public string WorkingPath
         {
             get => workingPath;
-            set 
-            { 
-                workingPath = value; 
-                this.RaisePropertyChanged(nameof(this.WorkingPath)); 
-            } 
+            set
+            {
+                workingPath = value;
+                this.RaisePropertyChanged(nameof(this.WorkingPath));
+            }
         }
 
         public RibbonMenuViewModel Ribbon { get; }
 
         public FileExplorerViewModel FileExplorer { get; }
+
+        public ICollection<IDockableViewModel> DockedViewModels { get; } = new ObservableCollection<IDockableViewModel>();
+
+        private void SetupTabs()
+        {
+            this.DockedViewModels.Add(this.FileExplorer);
+        }
     }
 }
