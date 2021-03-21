@@ -23,8 +23,9 @@ namespace FileTagger.Services
         public void SetWorkingDirectory(string filePath)
         {
             filePath.CheckWhetherArgumentIsNull(nameof(filePath));
+            var pathName = this.fileSystem.FileInfo.FromFileName(filePath).Directory.FullName;
 
-            if (!this.fileSystem.Directory.Exists(filePath))
+            if (!this.fileSystem.Directory.Exists(pathName))
             {
                 throw new InvalidOperationException("That file path does not exist.");
             }

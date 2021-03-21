@@ -20,6 +20,11 @@ namespace FileTaggerUnitTests.Services
 
             this.classUnderTest = this.CreateFileSystemService();
 
+            var mockFileInfo = new Mock<IFileInfo>();
+            var mockDirectoryInfo = new Mock<IDirectoryInfo>();
+            mockFileInfo.Setup(fi => fi.Directory).Returns(mockDirectoryInfo.Object);
+            mockDirectoryInfo.Setup(di => di.FullName).Returns("Somewhere.");
+            this.MockFileSystem.MockFileInfo.Setup(fi => fi.FromFileName(It.IsAny<string>())).Returns(mockFileInfo.Object);
             this.MockFileSystem.MockDirectory.Setup(dir => dir.Exists(It.IsAny<string>())).Returns(true);
             this.MockFileSystem.MockPath.Setup(path => path.GetDirectoryName(It.IsAny<string>())).Returns((string str) => str);
             this.classUnderTest.SetWorkingDirectory("Someplace.");
