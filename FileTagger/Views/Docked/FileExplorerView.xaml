@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:nodes="clr-namespace:FileTagger.Models.Nodes" 
              xmlns:dockedViewModels="clr-namespace:FileTagger.ViewModels.Docked"
              mc:Ignorable="d" 
              d:DataContext="{x:Type dockedViewModels:FileExplorerViewModel}">
     <Grid>
-        <TreeView ItemsSource="{Binding RootNode.ChildNodes}"/>
+        <TreeView ItemsSource="{Binding RootNode.ChildNodes}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding ChildNodes}" DataType="{x:Type nodes:NodeBase}">
+                    <ContentPresenter Content="{Binding}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
     </Grid>
 </UserControl>

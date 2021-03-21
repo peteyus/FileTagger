@@ -1,8 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:nodes="clr-namespace:FileTagger.Models.Nodes" 
-                    xmlns:models="clr-namespace:FileTagger.Views.Models">
+                    xmlns:nodes="clr-namespace:FileTagger.Models.Nodes">
+    <DataTemplate DataType="{x:Type nodes:FolderNode}">
+        <StackPanel Orientation="Horizontal">
+            <!-- folder icon -->
+            <TextBlock Text="{Binding Name}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type nodes:FileNode}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}" />
+        </StackPanel>
+    </DataTemplate>
+    
     <DataTemplate DataType="{x:Type nodes:NodeBase}">
-        <models:NodeView />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}" />
+        </StackPanel>
     </DataTemplate>
 </ResourceDictionary>

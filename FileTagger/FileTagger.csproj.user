@@ -13,9 +13,6 @@
     <Compile Update="Views\Menu\Ribbon.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Models\NodeView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\DataTemplates\FileExplorerViewTemplate.xaml">
@@ -34,9 +31,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\Ribbon.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Models\NodeView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
