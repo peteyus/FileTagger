@@ -2,6 +2,7 @@
 using FileTagger.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.IO.Abstractions;
 
 namespace FileTaggerUnitTests.TestInfrastructure
@@ -9,6 +10,8 @@ namespace FileTaggerUnitTests.TestInfrastructure
     [TestClass]
     public class TestBase
     {
+        protected Random Random = new Random();
+
         // My services
         protected Mock<IFileSystemService> MockFileSystemService { get; private set; }
         protected Mock<ISerializationService> MockSerializationService { get; private set; }

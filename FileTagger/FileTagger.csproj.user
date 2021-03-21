@@ -7,11 +7,26 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Docked\FileExplorerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Menu\Ribbon.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Resources\DataTemplates\FileExplorerViewTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\DataTemplates\NodeBaseTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ResourceLibrary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Docked\FileExplorerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

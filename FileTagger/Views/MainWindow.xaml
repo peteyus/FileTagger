@@ -3,6 +3,8 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+              xmlns:interfaces="clr-namespace:FileTagger.Interfaces.ViewModels"
               xmlns:menu="clr-namespace:FileTagger.Views.Menu"
               mc:Ignorable="d"
               Title="FileTagger" Height="450" Width="800"
@@ -13,10 +15,40 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
         
         <!-- Ribbon and menu definition -->
-        <menu:Ribbon Grid.Row="0" DataContext="{Binding Ribbon}" />
+        <menu:Ribbon Grid.Row="0" 
+                     Grid.ColumnSpan="2"
+                     DataContext="{Binding Ribbon}" />
         
-        <TextBlock Grid.Row="1" Text="{Binding WorkingPath}" />
+        <!-- Dock -->
+        <xcad:DockingManager AnchorablesSource="{Binding DockedViewModels}"
+                             Grid.Row="1"
+                             Grid.Column="0">
+            <xcad:DockingManager.LayoutItemContainerStyle>
+                <Style TargetType="{x:Type xcad:LayoutAnchorableItem}">
+                    <Setter Property="Title" Value="{Binding Model.Title}" />
+                    <Setter Property="CanClose" Value="{Binding Model.CanClose}" />
+                    <Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+                    <Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
+                    <Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
+                </Style>
+            </xcad:DockingManager.LayoutItemContainerStyle>
+
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel>
+                    <xcad:LayoutAnchorablePane Name="ToolsPane" />
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+        
+        <!-- content pane -->
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="1"
+                   Text="{Binding WorkingPath}" />
     </Grid>
 </RibbonWindow>
