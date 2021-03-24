@@ -47,8 +47,5 @@
         </xcad:DockingManager>
         
         <!-- content pane -->
-        <TextBlock Grid.Row="1" 
-                   Grid.Column="1"
-                   Text="{Binding WorkingPath}" />
     </Grid>
 </RibbonWindow>
