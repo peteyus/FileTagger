@@ -9,8 +9,6 @@ namespace FileTagger.Interfaces.ViewModels
 
         string ContentId { get; }
 
-        string Description { get; }
-
         bool IsActive { get; }
 
         bool IsSelected { get; }
