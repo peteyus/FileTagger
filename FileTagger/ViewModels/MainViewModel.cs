@@ -56,6 +56,8 @@ namespace FileTagger.ViewModels
 
         public ICollection<IDockableViewModel> DockedViewModels { get; } = new ObservableCollection<IDockableViewModel>();
 
+        public ICollection<IDocumentViewModel> Documents { get; } = new ObservableCollection<IDocumentViewModel>();
+
         private void SetupTabs()
         {
             this.DockedViewModels.Add(this.FileExplorer);

@@ -10,6 +10,9 @@
     <Compile Update="Views\Docked\FileExplorerView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\FolderView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Menu\Ribbon.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,7 +27,16 @@
     <Page Update="Resources\ResourceLibrary.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\Styles\DockedPaneStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\DocumentItemStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Docked\FileExplorerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FolderView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">

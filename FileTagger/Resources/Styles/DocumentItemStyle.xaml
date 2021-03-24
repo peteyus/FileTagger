@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock">
+    <Style TargetType="{x:Type xcad:LayoutItem}" 
+           x:Name="DocumentItemStyle" 
+           x:Key="DocumentItemStyle">
+        <Setter Property="Title" Value="{Binding Model.Title}" />
+        <Setter Property="CanClose" Value="{Binding Model.CanClose}" />
+        <Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+        <Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
+        <Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
+        <Setter Property="ToolTip">
+            <Setter.Value>
+                <ToolTip Content="{Binding Model.ToolTip}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
