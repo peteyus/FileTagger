@@ -3,6 +3,7 @@ using FileTagger.Interfaces;
 using FileTagger.Interfaces.ViewModels;
 using FileTagger.Resources;
 using FileTagger.ViewModels.Docked;
+using FileTagger.ViewModels.Documents;
 using FileTagger.ViewModels.Menu;
 using GalaSoft.MvvmLight;
 using System;
@@ -36,6 +37,7 @@ namespace FileTagger.ViewModels
             this.fileSystemService.SetRootDirectory(this.documentRoot);
 
             this.FileExplorer = new FileExplorerViewModel(this.fileSystemService.ReadRootDirectory());
+            this.FolderViewModel = new FolderViewModel(this.fileSystemService);
 
             this.SetupTabs();
         }
@@ -54,6 +56,8 @@ namespace FileTagger.ViewModels
 
         public FileExplorerViewModel FileExplorer { get; }
 
+        public FolderViewModel FolderViewModel { get; }
+
         public ICollection<IDockableViewModel> DockedViewModels { get; } = new ObservableCollection<IDockableViewModel>();
 
         public ICollection<IDocumentViewModel> Documents { get; } = new ObservableCollection<IDocumentViewModel>();
@@ -61,6 +65,8 @@ namespace FileTagger.ViewModels
         private void SetupTabs()
         {
             this.DockedViewModels.Add(this.FileExplorer);
+
+            this.Documents.Add(this.FolderViewModel);
         }
     }
 }

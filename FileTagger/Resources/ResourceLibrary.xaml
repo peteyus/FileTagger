@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <!-- Data Templates -->
-        <ResourceDictionary Source="DataTemplates/FileExplorerViewTemplate.xaml" />
+        <ResourceDictionary Source="DataTemplates/DockedDataTemplates.xaml" />
+        <ResourceDictionary Source="DataTemplates/DocumentDataTemplates.xaml" />
         <ResourceDictionary Source="DataTemplates/NodeBaseTemplate.xaml" />
         
         <!-- Styles -->

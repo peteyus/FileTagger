@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace FileTagger.Models.Nodes
 {
@@ -10,8 +11,8 @@ namespace FileTagger.Models.Nodes
 
         public string Icon { get; set; } // TODO PRJ: FontAwesome?
 
-        public ICollection<NodeBase> ChildNodes { get; } = new List<NodeBase>();
+        public ICollection<NodeBase> ChildNodes { get; } = new ObservableCollection<NodeBase>();
 
-        public ICollection<string> Tags { get; } = new List<string>();
+        public ICollection<string> Tags { get; } = new ObservableCollection<string>();
     }
 }
