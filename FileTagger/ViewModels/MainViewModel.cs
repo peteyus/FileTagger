@@ -33,9 +33,9 @@ namespace FileTagger.ViewModels
             var previousDocumentRoot = this.appSettingsService.GetSetting(Constants.DocumentRoot);
             this.documentRoot = previousDocumentRoot?.SettingValue.ToString() ?? AppDomain.CurrentDomain.BaseDirectory;
 
-            this.fileSystemService.SetWorkingDirectory(this.documentRoot);
+            this.fileSystemService.SetRootDirectory(this.documentRoot);
 
-            this.FileExplorer = new FileExplorerViewModel(this.fileSystemService.ReadWorkingDirectory());
+            this.FileExplorer = new FileExplorerViewModel(this.fileSystemService.ReadRootDirectory());
 
             this.SetupTabs();
         }

@@ -30,10 +30,10 @@ namespace IntegrationTests
                 var expectedDirectory = Path.GetDirectoryName(filePath);
 
                 // act
-                this.classUnderTest.SetWorkingDirectory(filePath);
+                this.classUnderTest.SetRootDirectory(filePath);
 
                 // assert
-                Assert.AreEqual(expectedDirectory, this.classUnderTest.WorkingDirectory, "Should have set the working directory.");
+                Assert.AreEqual(expectedDirectory, this.classUnderTest.RootDirectory, "Should have set the working directory.");
             }
         }
     }

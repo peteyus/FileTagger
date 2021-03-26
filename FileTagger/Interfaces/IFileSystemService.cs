@@ -8,15 +8,20 @@ namespace FileTagger.Interfaces
         /// <summary>
         /// Returns the current working directory. Null if no working directory selected.
         /// </summary>
-        string WorkingDirectory { get; }
+        string RootDirectory { get; }
+
+        /// <summary>
+        /// Returns a FolderNode containing the working tree under the root directory set by the last <see cref="ReadRootDirectory"/> call.
+        /// </summary>
+        FolderNode RootDirectoryTree { get; }
 
         /// <summary>
         /// Sets the current working directory.
         /// </summary>
         /// <param name="filePath">The path of a file or directory to work from. 
         ///     If a filename is provided, sets the working directory to the directory containing the specified file.</param>
-        void SetWorkingDirectory(string filePath);
+        void SetRootDirectory(string filePath);
 
-        NodeBase ReadWorkingDirectory();
+        NodeBase ReadRootDirectory();
     }
 }

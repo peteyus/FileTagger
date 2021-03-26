@@ -18,9 +18,11 @@ namespace FileTagger.Services
             this.fileSystem = fileSystem;
         }
 
-        public string WorkingDirectory { get; private set; }
+        public string RootDirectory { get; private set; }
 
-        public void SetWorkingDirectory(string filePath)
+        public FolderNode RootDirectoryTree { get; private set; }
+
+        public void SetRootDirectory(string filePath)
         {
             filePath.CheckWhetherArgumentIsNull(nameof(filePath));
             var pathName = this.fileSystem.FileInfo.FromFileName(filePath).Directory.FullName;
@@ -30,21 +32,22 @@ namespace FileTagger.Services
                 throw new InvalidOperationException("That file path does not exist.");
             }
 
-            this.WorkingDirectory = this.fileSystem.Path.GetDirectoryName(filePath);
+            this.RootDirectory = this.fileSystem.Path.GetDirectoryName(filePath);
         }
-
-        public NodeBase ReadWorkingDirectory()
+        
+        public NodeBase ReadRootDirectory()
         {
-            if (this.WorkingDirectory == null)
+            if (this.RootDirectory == null)
             {
                 throw new InvalidOperationException("Cannot read with no working directory set.");
             }
 
-            var rootDirectory = this.fileSystem.DirectoryInfo.FromDirectoryName(this.WorkingDirectory);
-            FolderNode rootNode = new FolderNode(rootDirectory.Name, this.WorkingDirectory);
+            var rootDirectory = this.fileSystem.DirectoryInfo.FromDirectoryName(this.RootDirectory);
+            FolderNode rootNode = new FolderNode(rootDirectory.Name, this.RootDirectory);
             this.PopulateChildDirectories(rootNode);
 
-            return rootNode;
+            this.RootDirectoryTree = rootNode;
+            return this.RootDirectoryTree;
         }
 
         private void PopulateChildDirectories(NodeBase parentNode)

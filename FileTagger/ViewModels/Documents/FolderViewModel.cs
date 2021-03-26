@@ -1,44 +1,67 @@
 ﻿using FileTagger.Extensions;
+using FileTagger.Interfaces;
 using FileTagger.Interfaces.ViewModels;
+using FileTagger.Models.Nodes;
 using GalaSoft.MvvmLight;
-using System.IO.Abstractions;
 
 namespace FileTagger.ViewModels.Documents
 {
     public class FolderViewModel : ViewModelBase, IDocumentViewModel
     {
-        private readonly IFileSystem fileSystem;
-        private IDirectoryInfo currentDirectory;
+        private readonly IFileSystemService fileSystemService;
+        private FolderNode currentDirectory;
+        private bool isActive;
+        private bool isSelected;
 
-        // TODO PRJ: Should I be using the FileSystemService? I think that implementation needs some thought.
-        public FolderViewModel(IFileSystem fileSystem)
+        public FolderViewModel(
+            IFileSystemService fileSystemService,
+            FolderNode currentDirectory = null)
         {
-            fileSystem.CheckWhetherArgumentIsNull(nameof(fileSystem));
+            fileSystemService.CheckWhetherArgumentIsNull(nameof(fileSystemService));
 
-            this.fileSystem = fileSystem;
+            this.fileSystemService = fileSystemService;
+            this.currentDirectory = currentDirectory ?? this.fileSystemService.RootDirectoryTree;
         }
 
-        public IDirectoryInfo CurrentDirectory 
+        public FolderNode CurrentDirectory
         {
-            get => currentDirectory; 
-            
+            get => currentDirectory;
+
             set
             {
                 currentDirectory = value;
-                this.RaisePropertyChanged(nameof(this.CurrentDirectory));
+                this.RaisePropertyChanged(nameof(CurrentDirectory));
             }
         }
 
-        public string Title => throw new System.NotImplementedException();
+        public string Title => this.CurrentDirectory?.Name;
 
-        public bool CanClose => throw new System.NotImplementedException();
+        public bool CanClose => false; // TODO PRJ: Multiple folder tabs?
 
-        public string ContentId => throw new System.NotImplementedException();
+        public string ContentId => $"folder-view-{this.CurrentDirectory?.Name ?? "empty"}";
 
-        public bool IsActive => throw new System.NotImplementedException();
+        public bool IsActive
+        {
+            get => isActive;
 
-        public bool IsSelected => throw new System.NotImplementedException();
+            set
+            {
+                isActive = value;
+                this.RaisePropertyChanged(nameof(CurrentDirectory));
+            }
+        }
 
-        public string ToolTip => throw new System.NotImplementedException();
+        public bool IsSelected
+        {
+            get => isSelected; 
+            
+            set
+            {
+                isSelected = value;
+                this.RaisePropertyChanged(nameof(CurrentDirectory));
+            }
+        }
+
+        public string ToolTip => this.CurrentDirectory?.FullPath;
     }
 }
