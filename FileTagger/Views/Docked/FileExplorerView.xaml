@@ -7,6 +7,26 @@
              xmlns:dockedViewModels="clr-namespace:FileTagger.ViewModels.Docked"
              mc:Ignorable="d" 
              d:DataContext="{x:Type dockedViewModels:FileExplorerViewModel}">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type nodes:FolderNode}">
+            <StackPanel Orientation="Horizontal">
+                <!-- folder icon -->
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type nodes:FileNode}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type nodes:NodeBase}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <TreeView ItemsSource="{Binding RootNode.ChildNodes}">
             <TreeView.ItemTemplate>

@@ -4,11 +4,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:documents="clr-namespace:FileTagger.ViewModels.Documents"
+             xmlns:nodes="clr-namespace:FileTagger.Models.Nodes" 
              mc:Ignorable="d" 
              d:DataContext="{x:Type documents:FolderViewModel}">
-    <WrapPanel Orientation="Horizontal">
-        <ItemsControl ItemsSource="{Binding CurrentDirectory.ChildNodes}">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type nodes:FolderNode}">
+            <!-- folder icon -->
+            <Border Width="100" 
+                    Height="100" 
+                    CornerRadius="5" 
+                    Background="DarkGray"
+                    Margin="5">
+                <TextBlock Text="{Binding Name}" />
+            </Border>
+        </DataTemplate>
 
-        </ItemsControl>
-    </WrapPanel>
+        <DataTemplate DataType="{x:Type nodes:FileNode}">
+            <Border Width="100" 
+                    Height="100" 
+                    CornerRadius="5" 
+                    Background="LightGray"
+                    Margin="5">
+                <TextBlock Text="{Binding Name}" />
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ItemsSource="{Binding CurrentDirectory.ChildNodes}">
+        <ListView.Template>
+            <ControlTemplate>
+                <ScrollViewer>
+                    <ItemsPresenter />
+                </ScrollViewer>
+            </ControlTemplate>
+        </ListView.Template>
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+    </ListView>
 </UserControl>
