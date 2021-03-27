@@ -14,7 +14,7 @@
                     Height="100" 
                     CornerRadius="5" 
                     Background="DarkGray"
-                    Margin="5">
+                    Margin="3">
                 <TextBlock Text="{Binding Name}" />
             </Border>
         </DataTemplate>
@@ -24,7 +24,10 @@
                     Height="100" 
                     CornerRadius="5" 
                     Background="LightGray"
-                    Margin="5">
+                    Margin="3">
+                <Border.ToolTip>
+                    <ToolTip Content="{Binding Name}" />
+                </Border.ToolTip>
                 <TextBlock Text="{Binding Name}" />
             </Border>
         </DataTemplate>
