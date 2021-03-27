@@ -1,7 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="DataTemplates/FileExplorerViewTemplate.xaml" />
+        <!-- Data Templates -->
+        <ResourceDictionary Source="DataTemplates/DockedDataTemplates.xaml" />
+        <ResourceDictionary Source="DataTemplates/DocumentDataTemplates.xaml" />
         <ResourceDictionary Source="DataTemplates/NodeBaseTemplate.xaml" />
+        
+        <!-- Styles -->
+        <ResourceDictionary Source="Styles/DocumentItemStyle.xaml" />
+        <ResourceDictionary Source="Styles/DockedPaneStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

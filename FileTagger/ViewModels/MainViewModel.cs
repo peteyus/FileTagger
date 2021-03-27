@@ -3,6 +3,7 @@ using FileTagger.Interfaces;
 using FileTagger.Interfaces.ViewModels;
 using FileTagger.Resources;
 using FileTagger.ViewModels.Docked;
+using FileTagger.ViewModels.Documents;
 using FileTagger.ViewModels.Menu;
 using GalaSoft.MvvmLight;
 using System;
@@ -15,7 +16,7 @@ namespace FileTagger.ViewModels
     {
         private readonly IAppSettingsService appSettingsService;
         private readonly IFileSystemService fileSystemService;
-        private string workingPath;
+        private string documentRoot;
 
         public MainViewModel(
             IAppSettingsService appSettingsService,
@@ -30,23 +31,24 @@ namespace FileTagger.ViewModels
             this.fileSystemService = fileSystemService;
             this.Ribbon = ribbonMenuViewModel;
 
-            var workingDirectory = this.appSettingsService.GetSetting(Constants.WorkingDirectory);
-            this.workingPath = workingDirectory?.SettingValue.ToString() ?? AppDomain.CurrentDomain.BaseDirectory;
+            var previousDocumentRoot = this.appSettingsService.GetSetting(Constants.DocumentRoot);
+            this.documentRoot = previousDocumentRoot?.SettingValue.ToString() ?? AppDomain.CurrentDomain.BaseDirectory;
 
-            this.fileSystemService.SetWorkingDirectory(this.workingPath);
+            this.fileSystemService.SetRootDirectory(this.documentRoot);
 
-            this.FileExplorer = new FileExplorerViewModel(this.fileSystemService.ReadWorkingDirectory());
+            this.FileExplorer = new FileExplorerViewModel(this.fileSystemService.ReadRootDirectory());
+            this.FolderViewModel = new FolderViewModel(this.fileSystemService);
 
             this.SetupTabs();
         }
 
-        public string WorkingPath
+        public string DocumentRoot
         {
-            get => workingPath;
+            get => documentRoot;
             set
             {
-                workingPath = value;
-                this.RaisePropertyChanged(nameof(this.WorkingPath));
+                documentRoot = value;
+                this.RaisePropertyChanged(nameof(this.DocumentRoot));
             }
         }
 
@@ -54,11 +56,17 @@ namespace FileTagger.ViewModels
 
         public FileExplorerViewModel FileExplorer { get; }
 
+        public FolderViewModel FolderViewModel { get; }
+
         public ICollection<IDockableViewModel> DockedViewModels { get; } = new ObservableCollection<IDockableViewModel>();
+
+        public ICollection<IDocumentViewModel> Documents { get; } = new ObservableCollection<IDocumentViewModel>();
 
         private void SetupTabs()
         {
             this.DockedViewModels.Add(this.FileExplorer);
+
+            this.Documents.Add(this.FolderViewModel);
         }
     }
 }

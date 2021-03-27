@@ -27,7 +27,7 @@ namespace FileTaggerUnitTests.Services
             this.MockFileSystem.MockFileInfo.Setup(fi => fi.FromFileName(It.IsAny<string>())).Returns(mockFileInfo.Object);
             this.MockFileSystem.MockDirectory.Setup(dir => dir.Exists(It.IsAny<string>())).Returns(true);
             this.MockFileSystem.MockPath.Setup(path => path.GetDirectoryName(It.IsAny<string>())).Returns((string str) => str);
-            this.classUnderTest.SetWorkingDirectory("Someplace.");
+            this.classUnderTest.SetRootDirectory("Someplace.");
         }
 
         [TestClass]
@@ -44,7 +44,7 @@ namespace FileTaggerUnitTests.Services
                 this.MockFileSystem.MockDirectoryInfo.Setup(di => di.FromDirectoryName(It.IsAny<string>())).Returns(mockDirectory.Object);
 
                 // act
-                var result = this.classUnderTest.ReadWorkingDirectory();
+                var result = this.classUnderTest.ReadRootDirectory();
 
                 // assert
                 Assert.AreEqual(expectedNodeName, result.Name, "Should have returned a node with the correct directory name.");
@@ -75,7 +75,7 @@ namespace FileTaggerUnitTests.Services
                 this.MockFileSystem.MockDirectoryInfo.Setup(di => di.FromDirectoryName(It.IsAny<string>())).Returns(mockDirectory.Object);
 
                 // act
-                var result = this.classUnderTest.ReadWorkingDirectory();
+                var result = this.classUnderTest.ReadRootDirectory();
 
                 // assert
                 Assert.AreEqual(expectedNodeName, result.Name, "Should have returned a node with the correct directory name.");

@@ -6,6 +6,7 @@
               xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
               xmlns:interfaces="clr-namespace:FileTagger.Interfaces.ViewModels"
               xmlns:menu="clr-namespace:FileTagger.Views.Menu"
+                    xmlns:selectors="clr-namespace:FileTagger.Resources.Selectors"
               mc:Ignorable="d"
               Title="FileTagger" Height="450" Width="800"
               DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -17,38 +18,28 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
         
         <!-- Ribbon and menu definition -->
         <menu:Ribbon Grid.Row="0" 
-                     Grid.ColumnSpan="2"
                      DataContext="{Binding Ribbon}" />
         
         <!-- Dock -->
         <xcad:DockingManager AnchorablesSource="{Binding DockedViewModels}"
+                             DocumentsSource="{Binding Documents}"
                              Grid.Row="1"
                              Grid.Column="0">
-            <xcad:DockingManager.LayoutItemContainerStyle>
-                <Style TargetType="{x:Type xcad:LayoutAnchorableItem}">
-                    <Setter Property="Title" Value="{Binding Model.Title}" />
-                    <Setter Property="CanClose" Value="{Binding Model.CanClose}" />
-                    <Setter Property="ContentId" Value="{Binding Model.ContentId}" />
-                    <Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
-                    <Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
-                </Style>
-            </xcad:DockingManager.LayoutItemContainerStyle>
+            <xcad:DockingManager.LayoutItemContainerStyleSelector>
+                <selectors:DockLayoutItemStyleSelector DocumentStyle="{StaticResource DocumentItemStyle}" 
+                                                       DockedPaneStyle="{StaticResource DockedPaneStyle}" />
+            </xcad:DockingManager.LayoutItemContainerStyleSelector>
 
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePane Name="ToolsPane" />
+                    <xcad:LayoutDocumentPane />
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>
-        
-        <!-- content pane -->
-        <TextBlock Grid.Row="1" 
-                   Grid.Column="1"
-                   Text="{Binding WorkingPath}" />
     </Grid>
 </RibbonWindow>
