@@ -8,7 +8,7 @@
               xmlns:menu="clr-namespace:FileTagger.Views.Menu"
                     xmlns:selectors="clr-namespace:FileTagger.Resources.Selectors"
               mc:Ignorable="d"
-              Title="FileTagger" Height="450" Width="800"
+              Title="FileTagger"
               DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
         <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
 
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
-                    <xcad:LayoutAnchorablePane Name="ToolsPane" />
+                    <xcad:LayoutAnchorablePane Name="ToolsPane" DockWidth="300"/>
                     <xcad:LayoutDocumentPane />
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
